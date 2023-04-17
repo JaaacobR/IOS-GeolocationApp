@@ -58,12 +58,6 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userCoords = locations.first!;
         
-        let initialRegion = MKCoordinateRegion(
-            center: userCoords.coordinate,
-            latitudinalMeters: 1000,
-            longitudinalMeters: 1000
-        )
-        
         self.coordinates = userCoords.coordinate;
     }
     
