@@ -23,7 +23,7 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
     override func viewDidLoad() {
         super.viewDidLoad();
         
-        mapKitView.frame = self.view.bounds;
+        
         
         lm.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
         lm.requestAlwaysAuthorization();
@@ -45,6 +45,7 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
         for voice in AVSpeechSynthesisVoice.speechVoices() {
             if voice.name == "Zosia" {
                 self.voiceToUse = voice
+                print("TAJ")
                 break
             }
         }
@@ -70,6 +71,15 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
         if(searchBar.text == "") {
             return;
         }
+        
+        let speechSynthesizer = AVSpeechSynthesizer()
+        let speechUtterance = AVSpeechUtterance(string: "Zaczynamy")
+        speechUtterance.rate = 0.57
+        speechUtterance.pitchMultiplier = 0.8
+        speechUtterance.postUtteranceDelay = 0.2
+        speechUtterance.volume = 0.8
+        speechUtterance.voice = self.voiceToUse
+        speechSynthesizer.speak(speechUtterance)
         
         self.mapKitView.removeOverlays(mapKitView.overlays)
         
@@ -172,6 +182,7 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
         let speechUtterance = AVSpeechUtterance(string: region.identifier)
         speechUtterance.voice = self.voiceToUse
         speechSynthesizer.speak(speechUtterance)
+        print("AAAAA")
     }
 }
 
@@ -179,7 +190,7 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
 class CustomAnnotationView: MKMarkerAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: "pin")
-        glyphImage = UIImage(named: "annotation")   // icon z Assets
+        glyphImage = UIImage(named: "apple")   // icon z Assets
         markerTintColor = .black
     }
 
