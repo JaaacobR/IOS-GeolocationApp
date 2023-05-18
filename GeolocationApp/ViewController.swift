@@ -45,7 +45,6 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
         for voice in AVSpeechSynthesisVoice.speechVoices() {
             if voice.name == "Zosia" {
                 self.voiceToUse = voice
-                print("TAJ")
                 break
             }
         }
@@ -182,7 +181,6 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
         let speechUtterance = AVSpeechUtterance(string: region.identifier)
         speechUtterance.voice = self.voiceToUse
         speechSynthesizer.speak(speechUtterance)
-        print("AAAAA")
     }
 }
 
